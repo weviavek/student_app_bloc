@@ -4,15 +4,16 @@ import '../../application/validators/validators.dart';
 
 class CustomTextField extends StatelessWidget {
   final String currentField;
-  const CustomTextField({super.key, required this.currentField});
+  final TextEditingController currentController;
+  const CustomTextField(
+      {super.key, required this.currentField, required this.currentController});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController currentContoller = TextEditingController();
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) => Validator.validate(value, currentField),
-      controller: currentContoller,
+      controller: currentController,
       decoration:
           InputDecoration(hintText: currentField, labelText: currentField),
     );

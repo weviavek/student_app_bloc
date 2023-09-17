@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:student_app_bloc/src/constants/constant_values.dart';
 
 class ProfilePicture {
   static show(String? imagePath, bool isEditMode) {
+    imagePath ??= defaultImagePath;
     return SizedBox(
         width: 300,
         height: 300,
         child: Stack(children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(imagePath!),
+            backgroundImage: NetworkImage(imagePath),
             maxRadius: 300,
           ),
           isEditMode

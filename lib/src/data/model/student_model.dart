@@ -1,10 +1,10 @@
 class StudentModel {
-  final String? name;
-  final int? age;
-  final String? department;
-  final String? phoneNumber;
-  final String? email;
-  final String? profilePath;
+  String? name;
+  int? age;
+  String? department;
+  String? phoneNumber;
+  String? email;
+  String? profilePath;
 
   StudentModel(
       {required this.name,
@@ -13,4 +13,12 @@ class StudentModel {
       required this.phoneNumber,
       required this.email,
       required this.profilePath});
+  StudentModel.fromJson(Map<dynamic, dynamic> json) {
+    name = json['name'];
+    age = json['age'];
+    department = json['department'];
+    phoneNumber = json['phoneNumber'];
+    email = json['email'];
+    department = json['profilePath'];
+  }
 }

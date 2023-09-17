@@ -1,0 +1,8 @@
+part of 'home_screen_floating_button_bloc.dart';
+
+@immutable
+sealed class HomeScreenFloatingButtonState {}
+
+final class HomeScreenFloatingButtonInitial extends HomeScreenFloatingButtonState {}
+
+final class AddClickedState extends HomeScreenFloatingButtonState{}
