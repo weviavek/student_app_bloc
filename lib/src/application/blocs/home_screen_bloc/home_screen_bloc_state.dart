@@ -1,9 +1,18 @@
 part of 'home_screen_bloc_bloc.dart';
 
-@immutable
-sealed class HomeScreenBlocState {}
+class HomeScreenBlocState {
+  final List<StudentModel> listOfStudents;
+  HomeScreenBlocState({required this.listOfStudents});
+}
 
-final class HomeScreenBlocInitial extends HomeScreenBlocState {}
+final class HomeScreenBlocInitial extends HomeScreenBlocState {
+  HomeScreenBlocInitial({required super.listOfStudents});
+}
 
-final class HomeScreenSuccessState extends HomeScreenBlocState {}
-final class HomeScreenErrorState extends HomeScreenBlocState {}
+final class HomeScreenSuccessState extends HomeScreenBlocState {
+  HomeScreenSuccessState({required super.listOfStudents});
+}
+
+final class HomeScreenErrorState extends HomeScreenBlocState {
+  HomeScreenErrorState({required super.listOfStudents});
+}

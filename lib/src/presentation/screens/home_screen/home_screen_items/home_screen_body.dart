@@ -15,10 +15,9 @@ class HomeScreenBody extends StatelessWidget {
       bloc: homeScreenContentBloc,
       listener: (context, state) {
         if (state is DeleteClickedState) {
-          print("Delete Clicked");
         }
         if (state is EditClickedState) {
-          print("Edit Clicked");
+          
         }
       },
       builder: (context, state) {
