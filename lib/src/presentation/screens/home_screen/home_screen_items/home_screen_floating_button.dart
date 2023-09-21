@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:student_app_bloc/src/application/blocs/home_screen_bloc/home_screen_bloc_bloc.dart';
 import 'package:student_app_bloc/src/application/blocs/home_screen_bloc/home_screen_floating_button/home_screen_floating_button_bloc.dart';
 import 'package:student_app_bloc/src/presentation/dialogs/new_or_edit_student_dialog.dart';
 
 class HomeScreenFloatingButton extends StatelessWidget {
-  const HomeScreenFloatingButton({super.key});
+  final HomeScreenBlocBloc homeScreenBlocBloc;
+  const HomeScreenFloatingButton({required this.homeScreenBlocBloc, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,11 @@ class HomeScreenFloatingButton extends StatelessWidget {
         HomeScreenFloatingButtonState>(
       listener: (context, state) {
         if (state is AddClickedState) {
-          NewAndEditDialog(currentStudentData: null).showDialog(context, false);
+          NewAndEditDialog(
+                  homeScreenBlocBloc:
+                      BlocProvider.of<HomeScreenBlocBloc>(context),
+                  currentStudentModel: null)
+              .showDialog(context, false);
         }
       },
       builder: (context, state) {

@@ -7,10 +7,10 @@ import 'package:student_app_bloc/src/presentation/widgets/profile_picture_select
 import '../widgets/text_field.dart';
 
 class DialogContent extends StatelessWidget {
-  final String? imagePath;
+  final StudentModel? currentModel;
   final bool isEditMode;
   const DialogContent(
-      {super.key, required this.imagePath, required this.isEditMode});
+      {super.key, required this.currentModel, required this.isEditMode});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,13 @@ class DialogContent extends StatelessWidget {
     final contollers = List<TextEditingController>.generate(
         5, (index) => TextEditingController());
     final formKey = GlobalKey<FormState>();
+    if (isEditMode) {
+      contollers[0].text = currentModel!.studentData.name!;
+      contollers[1].text = currentModel!.studentData.age!.toString();
+      contollers[2].text = currentModel!.studentData.department!;
+      contollers[3].text = currentModel!.studentData.phoneNumber!;
+      contollers[4].text = currentModel!.studentData.email!;
+    }
     return BlocConsumer<NewEditDialogBloc, NewEditDialogState>(
       bloc: newEditDialogBloc,
       listener: (context, state) {
@@ -39,7 +46,9 @@ class DialogContent extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  ProfilePicture.show(imagePath, isEditMode),
+                  ProfilePicture(
+                      imagePath: currentModel?.studentData.profilePath,
+                      isEditMode: isEditMode),
                   CustomTextField(
                     currentType: TextInputType.name,
                     currentField: 'Enter Name',

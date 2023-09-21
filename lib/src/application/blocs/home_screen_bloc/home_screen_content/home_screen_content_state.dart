@@ -10,6 +10,10 @@ final class DeleteClickedState extends HomeScreenContentState {
   DeleteClickedState({required this.listOfStudents});
 }
 
+final class StudentClickedState extends HomeScreenContentState {
+  final StudentModel clickedStudent;
+  StudentClickedState({required this.clickedStudent});
+}
+
 final class EditClickedState extends HomeScreenContentState {}
 
-final class NavigateToStudentDetailesEvent extends HomeScreenContentState {}

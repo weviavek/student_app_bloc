@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_app_bloc/src/application/blocs/home_screen_bloc/home_screen_appbar/home_screen_appbar_bloc.dart';
-import 'package:student_app_bloc/src/application/blocs/new_edit_dialog_bloc/new_edit_dialog_bloc.dart';
 import 'package:student_app_bloc/src/presentation/screens/search_screen/search_screen.dart';
 
 class HomeScreenAppBar extends StatelessWidget {
@@ -17,7 +16,7 @@ class HomeScreenAppBar extends StatelessWidget {
       listener: (context, state) {
         if (state is SearchClickedState) {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: ((context) => SearchScreen(states: state as NewEditDialogState,))));
+              MaterialPageRoute(builder: ((context) =>SearchScreen(listOfStudents: state.listOfStudents,))));
         }
       },
       builder: (context, state) {
@@ -26,7 +25,7 @@ class HomeScreenAppBar extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  homeScreenAppbarBloc.add(SearchClickedEvent());
+                  homeScreenAppbarBloc.add(SearchClickedEvent(listOfStudents: state.listOfStudents));
                 },
                 icon: const Icon(Icons.search_rounded))
           ],

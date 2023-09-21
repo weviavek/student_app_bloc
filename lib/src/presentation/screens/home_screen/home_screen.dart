@@ -34,10 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
         buildWhen: (previous, current) => current is !HomeScreenInitialState,
         listenWhen: (previous, current) => true,
         listener: (context, state) {
-          print("______________________________${state.runtimeType}");
         },
         builder: (context, state) {
-          print(state.runtimeType);
           if (state is HomeScreenSuccessState) {
             List<StudentModel> listOfStudents = state.listOfStudents;
             return MultiBlocProvider(
@@ -61,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: HomeScreenAppBar(),
                 ),
                 body: HomeScreenBody(listOfStudents: listOfStudents),
-                floatingActionButton: const HomeScreenFloatingButton(),
+                floatingActionButton:  HomeScreenFloatingButton(homeScreenBlocBloc: homeScreenBlocState,),
               ),
             );
           } else {

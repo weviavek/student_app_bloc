@@ -1,29 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../application/blocs/new_edit_dialog_bloc/new_edit_dialog_bloc.dart';
+import 'package:student_app_bloc/src/data/model/student_model.dart';
 
 class SearchScreen extends StatelessWidget {
-  final NewEditDialogState states;
-  const SearchScreen({super.key,required this.states});
+  final List<StudentModel> listOfStudents;
+  const SearchScreen({super.key, required this.listOfStudents});
 
   @override
   Widget build(BuildContext context) {
-    final temp = BlocProvider.of<NewEditDialogBloc>(context);
-    return BlocConsumer<NewEditDialogBloc, NewEditDialogState>(
-      bloc: temp,
-      listener: (context, state) {},
-      builder: (context, state) {
-        return SafeArea(
-            child: Scaffold(
-          body: Center(
-            child: ElevatedButton(
-                onPressed: () {
-                },
-                child:const Text("Text")),
-          ),
-        ));
-      },
-    );
+    return SafeArea(
+        child: Scaffold(
+      body: Center(
+        child: ElevatedButton(onPressed: () {}, child: const Text("Text")),
+      ),
+    ));
   }
 }

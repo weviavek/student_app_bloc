@@ -1,8 +1,12 @@
 part of 'home_screen_appbar_bloc.dart';
 
 @immutable
-sealed class HomeScreenAppbarState extends HomeScreenBlocState {}
+sealed class HomeScreenAppbarState extends HomeScreenBlocState {
+  final List<StudentModel> listOfStudents;
 
-final class HomeScreenAppbarInitial extends HomeScreenAppbarState {}
+  HomeScreenAppbarState({required this.listOfStudents});
+}
 
-final class SearchClickedState extends HomeScreenAppbarState {}
+final class SearchClickedState extends HomeScreenAppbarState {
+  SearchClickedState({required super.listOfStudents});
+}

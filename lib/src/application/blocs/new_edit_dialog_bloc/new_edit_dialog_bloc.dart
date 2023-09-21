@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:student_app_bloc/src/application/blocs/home_screen_bloc/home_screen_bloc_bloc.dart';
 import 'package:student_app_bloc/src/data/model/student_model.dart';
 
 part 'new_edit_dialog_event.dart';
@@ -10,7 +11,9 @@ part 'new_edit_dialog_state.dart';
 
 class NewEditDialogBloc extends Bloc<NewEditDialogEvent, NewEditDialogState> {
   final StudentData newModel;
-  NewEditDialogBloc({required this.newModel}) : super(NewEditDialogInitial()) {
+  final HomeScreenBlocBloc homeScreenBloc;
+  NewEditDialogBloc({required this.homeScreenBloc, required this.newModel})
+      : super(NewEditDialogInitial()) {
     on<CancelledEvent>(cancelledDialog);
     on<ClearedClickedEvent>(clearedFields);
     on<SubmittedClickedEvent>(submitNewData);
@@ -27,7 +30,7 @@ class NewEditDialogBloc extends Bloc<NewEditDialogEvent, NewEditDialogState> {
   }
 
   FutureOr<void> submitNewData(
-      SubmittedClickedEvent event, Emitter<NewEditDialogState> emit) async{
+      SubmittedClickedEvent event, Emitter<NewEditDialogState> emit) async {
     final Map<String, String?> newData = {
       'name': event.newStudent!.name,
       'age': event.newStudent!.age.toString(),
@@ -36,11 +39,8 @@ class NewEditDialogBloc extends Bloc<NewEditDialogEvent, NewEditDialogState> {
       'email': event.newStudent!.email,
       'profilePath': event.newStudent!.profilePath
     };
-    await FirebaseDatabase.instance
-        .ref()
-        .child('students')
-        .push()
-        .set(newData);
+    await FirebaseDatabase.instance.ref().child('students').push().set(newData);
     emit(SubmittedState(newModel: event.newStudent!));
+    homeScreenBloc.add(const HomeScreenInitialEvent());
   }
 }

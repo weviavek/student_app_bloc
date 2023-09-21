@@ -1,15 +1,21 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:student_app_bloc/src/constants/constant_values.dart';
 
-class ProfilePicture {
-  static show(String? imagePath, bool isEditMode) {
+class ProfilePicture extends StatelessWidget {
+  String? imagePath;
+  bool isEditMode;
+  ProfilePicture({super.key, this.imagePath, required this.isEditMode});
+
+  @override
+  Widget build(BuildContext context) {
     imagePath ??= defaultImagePath;
     return SizedBox(
         width: 300,
         height: 300,
         child: Stack(children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(imagePath),
+            backgroundImage: NetworkImage(imagePath!),
             maxRadius: 300,
           ),
           isEditMode

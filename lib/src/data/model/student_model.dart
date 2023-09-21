@@ -26,6 +26,6 @@ class StudentData {
     department = json['department'];
     phoneNumber = json['phoneNumber'];
     email = json['email'];
-    department = json['profilePath'];
+    profilePath = json['profilePath'];
   }
 }

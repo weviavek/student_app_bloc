@@ -17,6 +17,7 @@ class HomeScreenContentBloc
       : super(HomeScreenContentInitial()) {
     on<EditClickedEvent>(openEditDialog);
     on<DeleteClickedEvent>(openDeleteDialog);
+    on<StudentClickedEvent>(openStudentDetails);
   }
 
   FutureOr<void> openEditDialog(
@@ -30,7 +31,13 @@ class HomeScreenContentBloc
     final DatabaseReference databaseReference =
         FirebaseDatabase.instance.ref().child('students');
     await databaseReference.child(key).remove();
+    
     listOfStudents.removeWhere((element) => element.key == key);
     emit(DeleteClickedState(listOfStudents: listOfStudents));
+  }
+
+  FutureOr<void> openStudentDetails(
+      StudentClickedEvent event, Emitter<HomeScreenContentState> emit) {
+    emit(StudentClickedState(clickedStudent: event.clickedStudent));
   }
 }
