@@ -7,7 +7,7 @@ import 'package:student_app_bloc/src/presentation/dialogs/dialog_content.dart';
 import '../../application/blocs/new_edit_dialog_bloc/new_edit_dialog_bloc.dart';
 
 class NewAndEditDialog {
-  final StudentModel? currentStudentData;
+  final StudentData? currentStudentData;
 
   NewAndEditDialog({required this.currentStudentData});
   showDialog(BuildContext context, bool isEditMode) {
@@ -19,7 +19,7 @@ class NewAndEditDialog {
         title: const Text("Please Fill Up Following Details"),
         content: BlocProvider<NewEditDialogBloc>(
           create: (context) => NewEditDialogBloc(
-            newModel: StudentModel(
+            newModel: StudentData(
                 name: null,
                 age: null,
                 department: null,

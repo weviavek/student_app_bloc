@@ -1,20 +1,15 @@
 part of 'home_screen_content_bloc.dart';
 
 @immutable
-sealed class HomeScreenContentState extends HomeScreenBlocState {
-  HomeScreenContentState({required super.listOfStudents});
+sealed class HomeScreenContentState extends HomeScreenBlocState {}
+
+final class HomeScreenContentInitial extends HomeScreenContentState {}
+
+final class DeleteClickedState extends HomeScreenContentState {
+  final List<StudentModel> listOfStudents;
+  DeleteClickedState({required this.listOfStudents});
 }
 
-final class HomeScreenContentInitial extends HomeScreenContentState {
-  HomeScreenContentInitial({required super.listOfStudents});
-}
+final class EditClickedState extends HomeScreenContentState {}
 
-final class DeleteClickedState extends HomeScreenContentState{
-  DeleteClickedState({required super.listOfStudents});
-}
-final class EditClickedState extends HomeScreenContentState{
-  EditClickedState({required super.listOfStudents});
-}
-final class NavigateToStudentDetailesEvent extends  HomeScreenContentState{
-  NavigateToStudentDetailesEvent({required super.listOfStudents});
-}
+final class NavigateToStudentDetailesEvent extends HomeScreenContentState {}

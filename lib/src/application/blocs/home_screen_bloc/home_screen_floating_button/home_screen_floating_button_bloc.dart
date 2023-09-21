@@ -13,12 +13,12 @@ part 'home_screen_floating_button_state.dart';
 class HomeScreenFloatingButtonBloc
     extends Bloc<HomeScreenFloatingButtonEvent, HomeScreenFloatingButtonState> {
       final List<StudentModel>listOfStudents;
-  HomeScreenFloatingButtonBloc({required this.listOfStudents}) : super(HomeScreenFloatingButtonInitial(listOfStudents:listOfStudents)) {
+  HomeScreenFloatingButtonBloc({required this.listOfStudents}) : super(HomeScreenFloatingButtonInitial()) {
     on<HomeScreenFloatingButtonEvent>(addclicked);
   }
 
   FutureOr<void> addclicked(HomeScreenFloatingButtonEvent event,
       Emitter<HomeScreenFloatingButtonState> emit) {
-    emit(AddClickedState(listOfStudents: listOfStudents));
+    emit(AddClickedState());
   }
 }

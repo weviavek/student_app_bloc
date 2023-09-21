@@ -1,4 +1,11 @@
 class StudentModel {
+  final String key;
+  final StudentData studentData;
+
+  StudentModel({required this.key, required this.studentData});
+}
+
+class StudentData {
   String? name;
   int? age;
   String? department;
@@ -6,16 +13,16 @@ class StudentModel {
   String? email;
   String? profilePath;
 
-  StudentModel(
+  StudentData(
       {required this.name,
       required this.age,
       required this.department,
       required this.phoneNumber,
       required this.email,
       required this.profilePath});
-  StudentModel.fromJson(Map<dynamic, dynamic> json) {
+  StudentData.fromJson(Map<dynamic, dynamic> json) {
     name = json['name'];
-    age = json['age'];
+    age = int.tryParse(json['age']);
     department = json['department'];
     phoneNumber = json['phoneNumber'];
     email = json['email'];

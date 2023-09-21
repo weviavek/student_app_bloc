@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_app_bloc/src/application/blocs/home_screen_bloc/home_screen_bloc_bloc.dart';
 import 'package:student_app_bloc/src/data/model/student_model.dart';
 
@@ -12,18 +14,23 @@ class HomeScreenContentBloc
     extends Bloc<HomeScreenContentEvent, HomeScreenContentState> {
   final List<StudentModel> listOfStudents;
   HomeScreenContentBloc({required this.listOfStudents})
-      : super(HomeScreenContentInitial(listOfStudents: listOfStudents)) {
+      : super(HomeScreenContentInitial()) {
     on<EditClickedEvent>(openEditDialog);
     on<DeleteClickedEvent>(openDeleteDialog);
   }
 
   FutureOr<void> openEditDialog(
       EditClickedEvent event, Emitter<HomeScreenContentState> emit) {
-    emit(EditClickedState(listOfStudents: listOfStudents));
+    emit(EditClickedState());
   }
 
   FutureOr<void> openDeleteDialog(
-      DeleteClickedEvent event, Emitter<HomeScreenContentState> emit) {
+      DeleteClickedEvent event, Emitter<HomeScreenContentState> emit) async {
+    final String key = event.key;
+    final DatabaseReference databaseReference =
+        FirebaseDatabase.instance.ref().child('students');
+    await databaseReference.child(key).remove();
+    listOfStudents.removeWhere((element) => element.key == key);
     emit(DeleteClickedState(listOfStudents: listOfStudents));
   }
 }

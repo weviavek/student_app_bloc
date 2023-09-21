@@ -2,7 +2,7 @@ part of 'new_edit_dialog_bloc.dart';
 
 @immutable
 sealed class NewEditDialogEvent {
-  final StudentModel? currentModel;
+  final StudentData? currentModel;
   const NewEditDialogEvent( {this.currentModel,});
 }
 
@@ -15,7 +15,7 @@ final class ClearedClickedEvent extends NewEditDialogEvent {
 }
 
 final class SubmittedClickedEvent extends NewEditDialogEvent {
-  final StudentModel? newStudent;
+  final StudentData? newStudent;
   const SubmittedClickedEvent( {
      required this.newStudent
   });

@@ -1,7 +1,7 @@
 part of 'new_edit_dialog_bloc.dart';
 
 class NewEditDialogState {
-  final StudentModel? currentModel;
+  final StudentData? currentModel;
 
   const NewEditDialogState({this.currentModel});
 }
@@ -13,7 +13,7 @@ final class FieldClearedState extends NewEditDialogState {}
 final class CancelledState extends NewEditDialogState {}
 
 final class SubmittedState extends NewEditDialogState {
-  final StudentModel newModel;
+  final StudentData newModel;
 
   SubmittedState({super.currentModel, required this.newModel});
 }

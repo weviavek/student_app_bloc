@@ -6,5 +6,12 @@ sealed class HomeScreenContentEvent {}
 final class StudentClickedEvent extends HomeScreenContentEvent {}
 
 final class OpentionClickedEvent extends HomeScreenContentEvent {}
-final class DeleteClickedEvent extends HomeScreenContentEvent {}
+
+final class DeleteClickedEvent extends HomeScreenContentEvent {
+  final String key;
+
+  DeleteClickedEvent({required this.key});
+}
+final class UpdateList extends HomeScreenContentEvent{}
+
 final class EditClickedEvent extends HomeScreenContentEvent {}

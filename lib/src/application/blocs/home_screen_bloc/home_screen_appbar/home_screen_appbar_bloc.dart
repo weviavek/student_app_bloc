@@ -12,12 +12,12 @@ part 'home_screen_appbar_state.dart';
 class HomeScreenAppbarBloc
     extends Bloc<HomeScreenAppbarEvent, HomeScreenAppbarState> {
   final List<StudentModel> listOfStudents;
-  HomeScreenAppbarBloc({required this.listOfStudents}) : super(HomeScreenAppbarInitial(listOfStudents: listOfStudents)) {
+  HomeScreenAppbarBloc({required this.listOfStudents}) : super(HomeScreenAppbarInitial()) {
     on<HomeScreenAppbarEvent>(homeScreenToSearchPageNavigate);
   }
 
   FutureOr<void> homeScreenToSearchPageNavigate(
       HomeScreenAppbarEvent event, Emitter<HomeScreenAppbarState> emit) {
-    emit(SearchClickedState(listOfStudents: listOfStudents));
+    emit(SearchClickedState());
   }
 }

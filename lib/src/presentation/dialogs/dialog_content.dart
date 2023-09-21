@@ -30,9 +30,7 @@ class DialogContent extends StatelessWidget {
         if (state is CancelledState) {
           Navigator.pop(context);
         }
-        if (state is SubmittedState) {
-          
-        }
+        if (state is SubmittedState) {}
       },
       builder: (context, state) {
         return SingleChildScrollView(
@@ -77,14 +75,17 @@ class DialogContent extends StatelessWidget {
                           child: const Text("Clear")),
                       ElevatedButton(
                           onPressed: () {
-                            newEditDialogBloc.add(SubmittedClickedEvent(
-                                newStudent: StudentModel(
-                                    name: contollers[0].text,
-                                    age: int.tryParse(contollers[1].text) ?? 0,
-                                    department: contollers[2].text,
-                                    phoneNumber: contollers[3].text,
-                                    email: contollers[4].text,
-                                    profilePath: null)));
+                            if (formKey.currentState!.validate()) {
+                              newEditDialogBloc.add(SubmittedClickedEvent(
+                                  newStudent: StudentData(
+                                      name: contollers[0].text,
+                                      age:
+                                          int.tryParse(contollers[1].text) ?? 0,
+                                      department: contollers[2].text,
+                                      phoneNumber: contollers[3].text,
+                                      email: contollers[4].text,
+                                      profilePath: null)));
+                            }
                           },
                           child: const Text("Submit"))
                     ],

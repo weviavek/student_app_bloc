@@ -1,18 +1,14 @@
 part of 'home_screen_bloc_bloc.dart';
 
 class HomeScreenBlocState {
-  final List<StudentModel> listOfStudents;
-  HomeScreenBlocState({required this.listOfStudents});
+  HomeScreenBlocState();
 }
 
-final class HomeScreenBlocInitial extends HomeScreenBlocState {
-  HomeScreenBlocInitial({required super.listOfStudents});
-}
+final class HomeScreenInitialState extends HomeScreenBlocState {}
 
 final class HomeScreenSuccessState extends HomeScreenBlocState {
-  HomeScreenSuccessState({required super.listOfStudents});
+  final List<StudentModel> listOfStudents;
+  HomeScreenSuccessState({required this.listOfStudents});
 }
 
-final class HomeScreenErrorState extends HomeScreenBlocState {
-  HomeScreenErrorState({required super.listOfStudents});
-}
+final class HomeScreenErrorState extends HomeScreenBlocState {}
